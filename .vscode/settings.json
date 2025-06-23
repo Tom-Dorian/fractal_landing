@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "functional": "cpp",
+        "chrono": "cpp",
+        "array": "cpp",
+        "string_view": "cpp"
+    }
+}
