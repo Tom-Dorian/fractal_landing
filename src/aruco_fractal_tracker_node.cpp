@@ -34,26 +34,26 @@ ArucoFractalTracker::ArucoFractalTracker(const rclcpp::NodeOptions & options)
   detector_.setConfiguration("FRACTAL_3L_6");
 
   image_sub_ = this->create_subscription<sensor_msgs::msg::Image>(
-    "/simple_drone/bottom/image_raw", 10, std::bind(&ArucoFractalTracker::imageCallback, this, std::placeholders::_1));
+    "/camera/image_raw", 10, std::bind(&ArucoFractalTracker::imageCallback, this, std::placeholders::_1));
 
   image_pub_ = this->create_publisher<sensor_msgs::msg::Image>("Aruco_image", 10);
 
   marker_pose_pub_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("/arucoPose", 10);
-  // cv::Size image_size(1920, 1080);
-  // cv::Mat camera_matrix = (cv::Mat_<double>(3, 3) <<
-  //   1000.0, 0,  960.0,
-  //   0,  1000.0, 540.0,
-  //   0,  0,  1.0);
-  // cv::Mat dist_coeffs = (cv::Mat_<double>(5, 1) << 
-  //   0.0, 0.0, 0.0, 0.0, 0.0); // Default distortion coefficients
-  
-  cv::Size image_size(640, 360);
+  cv::Size image_size(1920, 1080);
   cv::Mat camera_matrix = (cv::Mat_<double>(3, 3) <<
-    554.3827, 0,  320.5,
-    0,  554.3827, 180.5,
+    1000.0, 0,  960.0,
+    0,  1000.0, 540.0,
     0,  0,  1.0);
   cv::Mat dist_coeffs = (cv::Mat_<double>(5, 1) << 
     0.0, 0.0, 0.0, 0.0, 0.0); // Default distortion coefficients
+  
+  // cv::Size image_size(640, 320);
+  // cv::Mat camera_matrix = (cv::Mat_<double>(3, 3) <<
+  //   554.3827, 0,  320.0,
+  //   0,  554.3827, 160.0,
+  //   0,  0,  1.0);
+  // cv::Mat dist_coeffs = (cv::Mat_<double>(5, 1) << 
+  //   0.0, 0.0, 0.0, 0.0, 0.0); // Default distortion coefficients
   aruco::CameraParameters cam_params;
   cam_params.setParams(camera_matrix, dist_coeffs, image_size);
   detector_.setParams(cam_params, .75); // Set marker size to 0.75 meters

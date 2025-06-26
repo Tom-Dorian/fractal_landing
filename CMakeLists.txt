@@ -19,6 +19,7 @@ find_package(aruco REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+find_package(dji_msdk_ros REQUIRED)
 
 include_directories(include)
 include_directories(
@@ -40,6 +41,7 @@ ament_target_dependencies(aruco_fractal_tracker_node
   OpenCV
   tf2
   tf2_geometry_msgs
+  dji_msdk_ros
 )
 rclcpp_components_register_nodes(aruco_fractal_tracker_node "fractal_tracker::ArucoFractalTracker")
 

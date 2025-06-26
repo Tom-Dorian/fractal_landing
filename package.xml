@@ -21,7 +21,7 @@
   <exec_depend>tf2</exec_depend>
   <exec_depend>tf2_geometry_msgs</exec_depend>
   <exec_depend>tf2_ros</exec_depend>
-
+  <depend>dji_msdk_ros</depend>
   <export>
     <build_type>ament_cmake</build_type>
   </export>
